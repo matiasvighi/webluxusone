@@ -7,7 +7,7 @@ function Home(){
     const [saludo, setSaludo] = useState("Cargando...")
 
     useEffect(() => {
-        axios.get("http://localhost:8000/hello/maty")
+        axios.get("http://localhost:8001/hello/maty")
         .then((response)=>{
             console.log(response);
             setSaludo(response.data);

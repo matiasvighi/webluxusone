@@ -32,12 +32,12 @@ function Menu() {
                         </IconButton>
                         <Button color="inherit" onClick={()=>{navigate("/casamientos")}}>Casamientos</Button>
                         <Button color="inherit" onClick={()=>{navigate("/eventos/5")}}>Eventos</Button>
-                        <Button color="inherit" onClick={()=>{navigate("/eventos/10")}}>Deportes</Button>
-                        <Button color="inherit">Modelos</Button>
-                        <Button color="inherit">OtrasCosas</Button>
+                        <Button color="inherit" onClick={()=>{navigate("/deportes/10")}}>Deportes</Button>
+                        <Button color="inherit" onClick={()=>{navigate("/modelos/11")}}>Modelos</Button>
+                        <Button color="inherit" onClick={()=>{navigate("/otrasCosas/11")}}>OtrasCosas</Button>
                     </Box>
                     <Box sx={{ justifySelf: "end" }}>
-                        <Button color="inherit">Login</Button>
+                        <Button color="inherit" onClick={()=>{navigate("/loginn")}}>Login</Button>
                     </Box>
                 </Toolbar>
             </AppBar>
