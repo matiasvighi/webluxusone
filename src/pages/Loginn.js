@@ -6,18 +6,22 @@ import Container from '@mui/material/Container';
 import {Button} from "@mui/material";
 import { SettingsOverscanOutlined } from "@mui/icons-material";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 
 
 
 export default function Loginn() {
+    let navigate = useNavigate();
 
 const [value, setValue] = React.useState();
 const [pass, setPass] = React.useState();
 const [subbut,setSubbut] =React.useState();
 const [userr, setUserr]= React.useState({});
-const [saludo, setSaludo] = React.useState("Cargando...")
+const [rta, setRta] = React.useState("Cargando...");
+const [token,setToken] = React.useState();
+const [usbut,setUsbut] = React.useState();
 
 const handleChange = (value, newValue) => {
     setValue(newValue) ;
@@ -36,22 +40,32 @@ const handleChange = (value, newValue) => {
          setSubbut(newSubbut) ;
      console.log("estoy tratando de submitear Email:",userr.email,"pasword:",userr.password);
 
-     axios.post("http://localhost:8002/login")
+     axios.post("http://localhost:8002/login",userr)
 
 
 
         .then((response)=>{
-            console.log(response);
-            setSaludo(response.data);
+            console.log(response.data.token);
+            setRta(response.data);
+            setToken(response.data.token);
         })
         .catch((error)=>{
             console.log(error);
-            setSaludo("todo mal!");
+            setRta("todo mal!");
         })
 
 
 
-        }
+    }
+    const handleClickNewUser = (usbut,newUsbut) => {
+        setUsbut(newUsbut) ;
+        console.log ("boton new user");
+        navigate("/newUser");
+        
+        //<Button color="inherit" onClick={()=>{navigate("/newUser")}}>OtrasCosas</Button>
+
+    }
+
 
     
   return (
@@ -93,7 +107,7 @@ const handleChange = (value, newValue) => {
         <Box> 
             
        <Button color="inherit" sx={{m:4}}variant="contained" onClick={handleClickLogin}>Login</Button>
-       <Button color="inherit" sx={{m:4}}variant="contained" onClick={{}}>Nuevo Usuario</Button>
+       <Button color="inherit" sx={{m:4}}variant="contained" onClick={handleClickNewUser}>Nuevo Usuario</Button>
         </Box>  
       </Container>
       </div>
