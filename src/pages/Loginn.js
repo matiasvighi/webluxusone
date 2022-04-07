@@ -48,6 +48,10 @@ const handleChange = (value, newValue) => {
             console.log(response.data.token);
             setRta(response.data);
             setToken(response.data.token);
+            let resp = response.data.token;
+            let url = `/${resp}`;
+            console.log(url,"url que voy a consultar");
+            navigate(url);
         })
         .catch((error)=>{
             console.log(error);

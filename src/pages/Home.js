@@ -25,8 +25,9 @@ function Home(){
                 
         
         .then((response)=>{
-            console.log(response);
-            setSaludo(response.data);
+            console.log(response.data.name,"response1");
+            
+            setSaludo(`Welcome,${response.data.name},have a nice day motherfucker`);
             console.log("pito Duro",saludo,token);
         })
         .catch((error)=>{
