@@ -1,8 +1,8 @@
-import { AppBar, Box, Button, IconButton, Toolbar,MenuItem } from "@mui/material";
+import { AppBar, Box, Button, IconButton, Toolbar,MenuItem,Menu } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
-import MenuD from "./MenuD";
+//import MenuD from "./MenuD";
 
 
 import React from 'react';
@@ -13,9 +13,19 @@ import React from 'react';
 
 
 
-function Menu() {
+function MenuA() {
     let navigate = useNavigate();
-
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+        console.log("apreto menú");
+       
+      };
+    
+      const handleClose = () => {
+        setAnchorEl(null);
+      };
   
   
    
@@ -32,12 +42,29 @@ function Menu() {
                             color="inherit"
                             aria-label="menu"
                             sx={{ mr: 2 }}
-                           
+                            aria-controls="simple-menu" 
+                            aria-haspopup="true" 
+                            onClick={handleClick}
                         >
+
                                 
                   
                             <MenuIcon />
                         </IconButton>
+                                <Menu
+                                    id="simple-menu"
+                                    anchorEl={anchorEl}
+                                    keepMounted
+                                    open={anchorEl}
+                                    onClose={handleClose}
+                                >
+                                    <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
+                                    <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
+                                    <MenuItem onClick={handleClose}>Preguntas</MenuItem>
+                                    <MenuItem onClick={handleClose}>Reservas</MenuItem>
+                                    <MenuItem onClick={handleClose}>Pagos</MenuItem>
+                                    <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
+                                </Menu>
                <IconButton
                             size="large"
                             edge="start"
@@ -61,7 +88,7 @@ function Menu() {
                 </Toolbar>
                 
             </AppBar>
-           <MenuD />
+       
             
         </Box>
          
@@ -69,4 +96,4 @@ function Menu() {
 
 }
 
-export default Menu;
+export default MenuA;

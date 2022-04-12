@@ -1,12 +1,12 @@
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Menu from './layout/Menu';
+import MenuA from './layout/MenuA';
 import LuxusRoutes from './LuxusRoutes';
 
 function App() {
   return (
     <BrowserRouter>
-      <Menu/>
+      <MenuA/>
       <LuxusRoutes/>
     </BrowserRouter>
   );
