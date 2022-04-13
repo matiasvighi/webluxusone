@@ -7,6 +7,14 @@ import {Button} from "@mui/material";
 import { SettingsOverscanOutlined } from "@mui/icons-material";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import  {useContext} from 'react'
+import UserInfoContext from '../context/UserInfoContext'
+
+
+
+
+import Context from "../context/UserInfoContext";
+
 
 
 
@@ -14,6 +22,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Loginn() {
     let navigate = useNavigate();
+
+const context = useContext(UserInfoContext);
 
 const [value, setValue] = React.useState();
 const [pass, setPass] = React.useState();
@@ -52,6 +62,8 @@ const handleChange = (value, newValue) => {
             let url = `/${resp}`;
             console.log(url,"url que voy a consultar");
             navigate(url);
+            context.UserInfoContext(resp);
+            console.log(context.UserInfoContext,"si anda me hago mono")
         })
         .catch((error)=>{
             console.log(error);

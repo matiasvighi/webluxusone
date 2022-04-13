@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
 
+// que Chori revise esto !!!
+
+
 
 
 const Context = React.createContext({})
 
 export function UserInfoContext ({children}) {
-const [userid,setUserId]= useState([])
+const [userid,setUsData]= useState([]);
+
+const updateUsData = (newUserdata) => {
+    setUsData((currentUser) => ({
+        ...currentUser,
+        userData : newUserdata
+    }));
+}
 
 return
-    <Context.Provider value={{userid, setUserId}}>
+    <Context.Provider value={{userid, setUsData}}>
 {children}
 </Context.Provider>
 }

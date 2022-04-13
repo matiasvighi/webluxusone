@@ -2,10 +2,12 @@ import { AppBar, Box, Button, IconButton, Toolbar,MenuItem,Menu } from "@mui/mat
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
+import React, {useContext} from 'react'
+//import UserInfoContext from '../Context/UserInfoContext'
 //import MenuD from "./MenuD";
 
 
-import React from 'react';
+
 
 
 
@@ -16,7 +18,7 @@ import React from 'react';
 function MenuA() {
     let navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    
+       
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
         console.log("apreto menú");
@@ -27,7 +29,8 @@ function MenuA() {
         setAnchorEl(null);
       };
   
-  
+ //const context = useContext(UserInfoContext);
+ //console.log (context);  
    
     
 
