@@ -3,18 +3,17 @@ import './App.css';
 import MenuA from './layout/MenuA';
 import LuxusRoutes from './LuxusRoutes';
 import UserInfoContext from './context/UserInfoContext';
+import UserInfoProvider from './context/UserInfoProvider';
 
 
 function App() {
   return (
-
-    <UserInfoContext>
-    <BrowserRouter>
-      <MenuA/>
-      <LuxusRoutes/>
-    </BrowserRouter>
-
-    </UserInfoContext>
+    <UserInfoProvider>
+      <BrowserRouter>
+        <MenuA/>
+        <LuxusRoutes/>
+      </BrowserRouter>
+    </UserInfoProvider>
   );
 }
 

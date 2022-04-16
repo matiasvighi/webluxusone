@@ -47,6 +47,8 @@ const handleChange = (value, newValue) => {
 }
 
      const handleClickLogin = (subbut, newSubbut) => {
+        context.setUsData("Garompa")
+        context.showMessage();
          setSubbut(newSubbut) ;
      console.log("estoy tratando de submitear Email:",userr.email,"pasword:",userr.password);
 
@@ -95,7 +97,7 @@ const handleChange = (value, newValue) => {
       autoComplete="off"
     >
       <div>
-       <Box>Login </Box>
+       <Box>Login {context.userid} </Box>
 
       <Container maxWidth="sm" sx={{m:25, border:1}}>
           <Box>
