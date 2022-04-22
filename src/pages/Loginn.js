@@ -47,11 +47,11 @@ const handleChange = (value, newValue) => {
 }
 
      const handleClickLogin = (subbut, newSubbut) => {
-        context.setUsData("Garompa")
+        context.setUsData("Garompa 3")
         context.showMessage();
          setSubbut(newSubbut) ;
      console.log("estoy tratando de submitear Email:",userr.email,"pasword:",userr.password);
-
+     console.log(context.userid,"chota de mono");
      axios.post("http://localhost:8002/login",userr)
 
 
@@ -60,12 +60,18 @@ const handleChange = (value, newValue) => {
             console.log(response.data.token);
             setRta(response.data);
             setToken(response.data.token);
+            console.log (response.data, "complete response")
             let resp = response.data.token;
-            let url = `/${resp}`;
-            console.log(url,"url que voy a consultar");
-            navigate(url);
-            context.UserInfoContext(resp);
-            console.log(context.UserInfoContext,"si anda me hago mono")
+            let usrname= response.data.first_name;
+            console.log("nombre del vago1",usrname,"....");
+            //let url = `/${resp}`;
+            //console.log(url,"url que voy a consultar");
+            //navigate(url);
+                    
+            context.setUsData(resp);
+            context.setUsername(usrname);
+            console.log("token actual2",context.userid,"nombre del vago que está conectado",context.username);
+            navigate("/") ;  
         })
         .catch((error)=>{
             console.log(error);

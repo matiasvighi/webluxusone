@@ -11,7 +11,7 @@ import NewUser from "./pages/NewUser";
 function LuxusRoutes(){
     return(
         <Routes>
-            <Route path="/:eventId" element={<Home />}/>
+            <Route path="/" element={<Home />}/>
             <Route path="/casamientos" element={<Casamientos />}/>
             <Route path="/eventos/:eventId" element={<Eventos />}/>
             <Route path="/deportes/:eventId" element={<Deportes />}/>

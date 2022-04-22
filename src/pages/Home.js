@@ -2,33 +2,37 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import logo from '../logo.svg';
 import * as React from 'react';
-import { useParams } from "react-router-dom";
 
+import  {useContext} from 'react'
+import UserInfoContext from '../context/UserInfoContext'
 
 
 
 function Home(){
+    console.log("home")
+    const context = useContext(UserInfoContext);
 
-    let params = useParams();
 
-    console.log ("chota")
-    const [token,setToken] = React.useState();
-    const [saludo, setSaludo] = useState("Cargando...")
-    let tokenl = {token : params.eventId}
-    console.log("variable local token",tokenl);
+  
+
     
-       
+    const [saludo, setSaludo] = useState("Cargando...")
+    
+    let token = {token : context.userid};
+   
+   
+    console.log("token actual",token);
 
 
-        console.log("token state",tokenl,"token state");
-        axios.post("http://localhost:8002/welcome", tokenl)
+        
+        axios.post("http://localhost:8002/welcome", token)
                 
         
         .then((response)=>{
             console.log(response.data.name,"response1");
             
             setSaludo(`Welcome,${response.data.name},have a nice day motherfucker`);
-            console.log("pito Duro",saludo,token);
+            console.log("pito Duro",saludo,context.userid);
         })
         .catch((error)=>{
             console.log("error-",error,"-error");

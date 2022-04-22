@@ -2,9 +2,11 @@ import { AppBar, Box, Button, IconButton, Toolbar,MenuItem,Menu } from "@mui/mat
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
-import React, {useContext} from 'react'
-//import UserInfoContext from '../Context/UserInfoContext'
-//import MenuD from "./MenuD";
+import * as React from 'react';
+
+
+import  {useContext} from 'react'
+import UserInfoContext from '../context/UserInfoContext'
 
 
 
@@ -16,19 +18,51 @@ import React, {useContext} from 'react'
 
 
 function MenuA() {
+    const context = useContext(UserInfoContext);
+    function Botonl () {return <Button color="inherit" sx={{ ml: 1} }  onClick={()=>{navigate("/loginn")}}>Login</Button>}
     let navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
        
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
         console.log("apreto menú");
-       
+    
       };
+
+    const handleClick1 = () => {
+         
+        console.log("chavon logueado apreta boton");
+        
+        <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={anchorEl}
+        onClose={handleClose}
+    >
+        <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
+        <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
+        <MenuItem onClick={handleClose}>Preguntas</MenuItem>
+        <MenuItem onClick={handleClose}>Reservas</MenuItem>
+        <MenuItem onClick={handleClose}>Pagos</MenuItem>
+        <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
+    </Menu>
+    }//aca va lo del boton del tipo logeado     
     
       const handleClose = () => {
         setAnchorEl(null);
       };
-  
+
+    function Botonlogin () {
+        if (context.userid) {
+
+        
+        return <Button color="inherit" sx={{ ml: 1} } onClick={handleClick1}>{context.username}</Button>}  
+      return   <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>
+    
+    }
+         
+
  //const context = useContext(UserInfoContext);
  //console.log (context);  
    
@@ -85,7 +119,8 @@ function MenuA() {
                         <Button color="inherit" onClick={()=>{navigate("/otrasCosas/11")}}>OtrasCosas</Button>
                     </Box>
                     <Box sx={{ justifySelf: "end" }}>
-                        <Button color="inherit" onClick={()=>{navigate("/loginn")}}>Login</Button>
+                      <Botonlogin />  
+                        
                     </Box>
                     
                 </Toolbar>

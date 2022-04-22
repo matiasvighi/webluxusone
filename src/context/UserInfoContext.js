@@ -1,8 +1,13 @@
 import { createContext } from "react";
 
 const initial = {
+    username:null,
     userid: null,
-    setUsData: () => { },
+    isadmin:null,
+
+    setUsData: () => {},
+    setUsername: () =>{},
+    setUserid:() => {},
     showMessage: () => {}
 }
 
