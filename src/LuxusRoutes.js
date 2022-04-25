@@ -7,6 +7,12 @@ import Modelos from "./pages/Modelos";
 import OtrasCosas from "./pages/OtrasCosas";
 import Loginn from "./pages/Loginn";
 import NewUser from "./pages/NewUser";
+import MiCuenta from "./pages/MiCuenta";
+import MisFotos from "./pages/MisFotos";
+import Pagos from "./pages/Pagos";
+import Reservas from "./pages/Reservas";
+import ReunionesMinuta from "./pages/ReunionesMinuta";
+
 
 function LuxusRoutes(){
     return(
@@ -19,6 +25,11 @@ function LuxusRoutes(){
             <Route path="/otrascosas/:eventId" element={<OtrasCosas />}/>
             <Route path="/loginn" element={<Loginn />}/>
             <Route path="/newuser/" element={<NewUser></NewUser>}></Route>
+            <Route path="/micuenta/"element={<MiCuenta />}></Route>
+            <Route path="/misfotos/"element={<MisFotos />}></Route>
+            <Route path="/pagos/"element={<Pagos />}></Route>
+            <Route path="/reservas/"element={<Reservas />}></Route>
+            <Route path="/reunionesminutas/"element={<ReunionesMinuta />}></Route>
         </Routes>
     )
 }

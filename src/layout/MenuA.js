@@ -22,7 +22,7 @@ function MenuA() {
     function Botonl () {return <Button color="inherit" sx={{ ml: 1} }  onClick={()=>{navigate("/loginn")}}>Login</Button>}
     let navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
-       
+    const [anchorEl2, setAnchorEl2] = React.useState(null);   
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
         console.log("apreto menú");
@@ -34,10 +34,10 @@ function MenuA() {
         console.log("chavon logueado apreta boton");
         
         <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
+        id="simple-menu2"
+        anchorEl={anchorEl2}
         keepMounted
-        open={anchorEl}
+        open={anchorEl2}
         onClose={handleClose}
     >
         <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
@@ -46,9 +46,10 @@ function MenuA() {
         <MenuItem onClick={handleClose}>Reservas</MenuItem>
         <MenuItem onClick={handleClose}>Pagos</MenuItem>
         <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
-    </Menu>
+        </Menu>
     }//aca va lo del boton del tipo logeado     
-    
+      
+
       const handleClose = () => {
         setAnchorEl(null);
       };
@@ -57,8 +58,8 @@ function MenuA() {
         if (context.userid) {
 
         
-        return <Button color="inherit" sx={{ ml: 1} } onClick={handleClick1}>{context.username}</Button>}  
-      return   <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>
+        return ( <Button color="inherit" sx={{ ml: 1} } onClick={handleClick1}>{context.username}</Button>)}  
+      return  ( <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>)
     
     }
          
@@ -95,7 +96,7 @@ function MenuA() {
                                     open={anchorEl}
                                     onClose={handleClose}
                                 >
-                                    <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
+                                    <MenuItem onClick={()=>{setAnchorEl(null);navigate("/micuenta")}}>Mi cuenta</MenuItem>
                                     <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
                                     <MenuItem onClick={handleClose}>Preguntas</MenuItem>
                                     <MenuItem onClick={handleClose}>Reservas</MenuItem>
