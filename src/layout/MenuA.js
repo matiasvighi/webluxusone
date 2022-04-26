@@ -19,7 +19,7 @@ import UserInfoContext from '../context/UserInfoContext'
 
 function MenuA() {
     const context = useContext(UserInfoContext);
-    function Botonl () {return <Button color="inherit" sx={{ ml: 1} }  onClick={()=>{navigate("/loginn")}}>Login</Button>}
+    
     let navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorEl2, setAnchorEl2] = React.useState(null);   
@@ -29,37 +29,64 @@ function MenuA() {
     
       };
 
-    const handleClick1 = () => {
-         
+  
+      
+      
+      
+      
+    const handleClick1 = (event) => {
+        setAnchorEl2(event.currentTarget);
         console.log("chavon logueado apreta boton");
         
-        <Menu
-        id="simple-menu2"
-        anchorEl={anchorEl2}
-        keepMounted
-        open={anchorEl2}
-        onClose={handleClose}
-    >
-        <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
-        <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
-        <MenuItem onClick={handleClose}>Preguntas</MenuItem>
-        <MenuItem onClick={handleClose}>Reservas</MenuItem>
-        <MenuItem onClick={handleClose}>Pagos</MenuItem>
-        <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
-        </Menu>
+        
     }//aca va lo del boton del tipo logeado     
       
 
       const handleClose = () => {
         setAnchorEl(null);
+        setAnchorEl2(null);
       };
 
     function Botonlogin () {
         if (context.userid) {
 
         
-        return ( <Button color="inherit" sx={{ ml: 1} } onClick={handleClick1}>{context.username}</Button>)}  
-      return  ( <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>)
+            return (
+                <Box sx={{ ml: 2, display: "flex", justifyContent: "start" }}>
+                <Button
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu2"
+                sx={{ ml: 2 }}
+                aria-controls="simple-menu2" 
+                aria-haspopup="true" 
+                onClick={handleClick1}
+            >
+            {context.username}
+            </Button>
+                
+                <Menu
+                id="simple-menu2"
+                anchorEl={anchorEl2}
+                keepMounted
+                open={anchorEl2}
+                onClose={handleClose}
+                >
+                <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
+                <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
+                <MenuItem onClick={handleClose}>Preguntas</MenuItem>
+                <MenuItem onClick={handleClose}>Reservas</MenuItem>
+                <MenuItem onClick={handleClose}>Pagos</MenuItem>
+                <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
+                </Menu>
+            </Box>
+            
+            )
+            }    
+    
+    
+        return  ( <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>)
     
     }
          

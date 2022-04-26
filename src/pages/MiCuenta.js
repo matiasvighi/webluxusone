@@ -18,11 +18,11 @@ export default function MiCuenta() {
     const [value, setValue] = React.useState();
     const [name, setName] = React.useState();
     const [pass, setPass] = React.useState();
+    const [passn, setPassn] = React.useState();
     const [email,setEmail] =React.useState();
     const [LastName, setLastName] = React.useState();
     const [paq, setPaq] = React.useState({});
     const []= React.useState();
-    const [userdata, setUserdata] = React.useState(); 
     const context = useContext(UserInfoContext);
     const test = () => {console.log(paq)} 
     const handleChangeN = (name, newName) => {
@@ -53,6 +53,15 @@ export default function MiCuenta() {
         let newPaq = {...paq, password : pass.target.value}
         setPaq(newPaq);    
         console.log(paq.password,"password");  
+    }
+
+    
+        
+    const handleChangePN = (passn, newPassn) => {
+        setPassn(newPassn) ;
+        let newPaq = {...paq, passwordn : passn.target.value}
+        setPaq(newPaq);    
+        console.log(paq.passwordn,"passwordn");  
     }
 
 
@@ -105,9 +114,10 @@ export default function MiCuenta() {
         
         <Box>
             <TextField
+            sx={{m:2}}
             required
             id="first_name"
-            label={paq.name}
+            label={paq.first_name}
             onChange={handleChangeN}
             
             
@@ -117,6 +127,7 @@ export default function MiCuenta() {
         
         <Box>
             <TextField
+            sx={{m:2}}
             required
             id="last_name"
             label={paq.last_name}
@@ -130,6 +141,7 @@ export default function MiCuenta() {
             
         <Box>
             <TextField
+            sx={{m:2}}
             required
             id="outlined-required"
             label={paq.email}
@@ -142,12 +154,25 @@ export default function MiCuenta() {
         
         <Box>
             <TextField
+            sx={{m:2}}
+            required
+            id="outlined-password-input"
+            label="Clave Vieja"
+            type="password"
+            autoComplete="current-password"
+            onChange={handleChangeP}
+            />
+        
+        </Box>
+        <Box>
+            <TextField
+            sx={{m:2}}
             required
             id="outlined-password-input"
             label="Change Password"
             type="password"
             autoComplete="current-password"
-            onChange={handleChangeP}
+            onChange={handleChangePN}
             />
         
         </Box>
@@ -157,3 +182,5 @@ export default function MiCuenta() {
   );
 }
 
+// Poner un flag cada vez que se cambie un estado desde la página y esos son los estados que van a conformar
+// el paquete que devuelvo al backend poner un popup de confirmación
