@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import {Button} from "@mui/material";
 import axios from 'axios';
@@ -15,6 +15,8 @@ import UserInfoContext from '../context/UserInfoContext'
 
 
 export default function MiCuenta() {
+
+   
     const [value, setValue] = React.useState();
     const [name, setName] = React.useState();
     const [pass, setPass] = React.useState();
@@ -22,9 +24,54 @@ export default function MiCuenta() {
     const [email,setEmail] =React.useState();
     const [LastName, setLastName] = React.useState();
     const [paq, setPaq] = React.useState({});
-    const []= React.useState();
+    const [send,setSend]= React.useState();
     const context = useContext(UserInfoContext);
     const test = () => {console.log(paq)} 
+    useEffect(() => {
+        console.log("aprete noma")
+        let token = {token : context.userid};
+    
+    
+        console.log("token actual",token);
+
+
+            
+        axios.post("http://localhost:8002/welcome", token)
+                    
+            
+            .then((response)=>{
+                console.log(response.data,"response1");
+                
+                setPaq(response.data);
+                
+            })
+            .catch((error)=>{
+                console.log("error-",error,"-error");
+               
+            })
+    
+        },[context]
+
+       
+     )
+     const handleClickSend = () => {
+        let token = {token : context.userid , userdata : paq };
+        
+        axios.post("http://localhost:8002/modif", token,"chota")
+                    
+            
+        .then((response)=>{
+            console.log(response.data,"response1");
+            
+            
+        })
+        .catch((error)=>{
+            console.log("error-",error,"-error");
+           
+        })
+    } 
+
+
     const handleChangeN = (name, newName) => {
         setName(newName) ;
         console.log(name.target.value);
@@ -65,32 +112,7 @@ export default function MiCuenta() {
     }
 
 
-    const Modify =(value,setValue) => {
-            console.log("aprete noma")
-            let token = {token : context.userid};
-        
-        
-            console.log("token actual",token);
-
-
-                
-            axios.post("http://localhost:8002/welcome", token)
-                        
-                
-                .then((response)=>{
-                    console.log(response.data,"response1");
-                    
-                    setPaq(response.data);
-                    
-                })
-                .catch((error)=>{
-                    console.log("error-",error,"-error");
-                   
-                })
-        
-    
-
-    };      
+ 
    
 
 
@@ -107,8 +129,7 @@ export default function MiCuenta() {
         
         </div>
         
-        <Button color="inherit" sx={{m:4}}variant="contained" onClick={Modify}>Editar Usuario</Button>
-        <Button color="inherit" sx={{m:4}}variant="contained" onClick={test}>Editar Usuario</Button>
+       
       </Box>
       <Container>
         
@@ -122,6 +143,7 @@ export default function MiCuenta() {
             
             
             />
+             
 
         </Box>
         
@@ -176,6 +198,7 @@ export default function MiCuenta() {
             />
         
         </Box>
+        <Button color="inherit" sx={{m:4}}variant="contained" onClick={handleClickSend}>Login</Button>
     </Container>         
     </div>
     

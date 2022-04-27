@@ -25,6 +25,7 @@ function MenuA() {
     const [anchorEl2, setAnchorEl2] = React.useState(null);   
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        console.log(anchorEl,"anchor de espadar 1",event.currentTarget);
         console.log("apreto menú");
     
       };
@@ -35,6 +36,7 @@ function MenuA() {
       
       
     const handleClick1 = (event) => {
+        console.log(anchorEl2,"anchor de bastor 2",event.currentTarget);
         setAnchorEl2(event.currentTarget);
         console.log("chavon logueado apreta boton");
         
@@ -58,7 +60,7 @@ function MenuA() {
                 edge="start"
                 color="inherit"
                 aria-label="menu2"
-                sx={{ ml: 2 }}
+                sx={{ mr: 2 }}
                 aria-controls="simple-menu2" 
                 aria-haspopup="true" 
                 onClick={handleClick1}
