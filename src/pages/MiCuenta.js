@@ -57,7 +57,7 @@ export default function MiCuenta() {
      const handleClickSend = () => {
         let token = {token : context.userid , userdata : paq };
         
-        axios.post("http://localhost:8002/modif", token,"chota")
+        axios.post("http://localhost:8002/modif", token)
                     
             
         .then((response)=>{
