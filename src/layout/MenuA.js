@@ -75,7 +75,8 @@ function MenuA() {
                 open={anchorEl2}
                 onClose={handleClose}
                 >
-                <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
+                <MenuItem onClick={()=>{setAnchorEl(null);navigate("/micuenta")}}>Mi cuenta</MenuItem>
+
                 <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
                 <MenuItem onClick={handleClose}>Preguntas</MenuItem>
                 <MenuItem onClick={handleClose}>Reservas</MenuItem>
@@ -125,7 +126,6 @@ function MenuA() {
                                     open={anchorEl}
                                     onClose={handleClose}
                                 >
-                                    <MenuItem onClick={()=>{setAnchorEl(null);navigate("/micuenta")}}>Mi cuenta</MenuItem>
                                     <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
                                     <MenuItem onClick={handleClose}>Preguntas</MenuItem>
                                     <MenuItem onClick={handleClose}>Reservas</MenuItem>

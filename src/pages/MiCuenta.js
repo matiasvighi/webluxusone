@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
-import {Button} from "@mui/material";
+import {Button, Dialog, DialogTitle, DialogContent, DialogActions,DialogContentText} from "@mui/material";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
@@ -8,8 +8,6 @@ import Container from '@mui/material/Container';
 
 import  {useContext} from 'react'
 import UserInfoContext from '../context/UserInfoContext'
-
-
 
 
 
@@ -27,6 +25,11 @@ export default function MiCuenta() {
     const [send,setSend]= React.useState();
     const context = useContext(UserInfoContext);
     const test = () => {console.log(paq)} 
+    const [open, setOpen] = React.useState(false)
+    const [passc, setPassc] = React.useState();
+    const [openE, setOpenE] = React.useState(); 
+    const [passns, setPassns] = React.useState();
+    
     useEffect(() => {
         console.log("aprete noma")
         let token = {token : context.userid};
@@ -54,8 +57,20 @@ export default function MiCuenta() {
 
        
      )
+      const handleClickOpen = () => {
+          setOpen(true);}
+      const handleClose = () => {
+          setOpen(false);
+      }    
+      
      const handleClickSend = () => {
         let token = {token : context.userid , userdata : paq };
+        
+        if (paq.password != paq.passwordn) {
+           console.log("cambio de clave")
+            setOpen(true);
+
+        }
         
         axios.post("http://localhost:8002/modif", token)
                     
@@ -107,8 +122,20 @@ export default function MiCuenta() {
     const handleChangePN = (passn, newPassn) => {
         setPassn(newPassn) ;
         let newPaq = {...paq, passwordn : passn.target.value}
-        setPaq(newPaq);    
+        setPaq(newPaq);  
+        setPassns(passn.target.value)  
         console.log(paq.passwordn,"passwordn");  
+    }
+
+    const handleChangeRevPass = (passc,newPassc) => {
+         
+        setPassc(newPassc);
+        if (passc.target.value != passns){
+          console.log(passns,"passwd de antes", passc.target.value ,"pass de ahora")
+        setOpenE(true);
+        console.log("no coinciden capo");
+  
+        }
     }
 
 
@@ -199,11 +226,43 @@ export default function MiCuenta() {
         
         </Box>
         <Button color="inherit" sx={{m:4}}variant="contained" onClick={handleClickSend}>Login</Button>
-    </Container>         
+    </Container>    
+    <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"password have been changed"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+           Se cambió la contraseña, repita para evitar errores 
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        <Box>
+            <TextField
+            sx={{m:2}}
+            required
+            id="outlined-password-input"
+            label="Change Password"
+            type="password"
+            autoComplete="current-password"
+            onChange={handleChangeRevPass}
+            />
+        
+        </Box>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>  
+
+    
     </div>
     
   );
-}
 
+  }
 // Poner un flag cada vez que se cambie un estado desde la página y esos son los estados que van a conformar
 // el paquete que devuelvo al backend poner un popup de confirmación
