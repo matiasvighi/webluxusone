@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
-import {Button, Dialog, DialogTitle, DialogContent, DialogActions,DialogContentText} from "@mui/material";
+import {Button, Dialog, DialogTitle, DialogContent, DialogActions,DialogContentText, Alert, Collapse} from "@mui/material";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 
 import  {useContext} from 'react'
 import UserInfoContext from '../context/UserInfoContext'
+import { SettingsOverscanRounded } from '@mui/icons-material';
 
 
 
@@ -27,9 +28,9 @@ export default function MiCuenta() {
     const test = () => {console.log(paq)} 
     const [open, setOpen] = React.useState(false)
     const [passc, setPassc] = React.useState();
-    const [openE, setOpenE] = React.useState(); 
+    const [openE, setOpenE] = React.useState(false); 
     const [passns, setPassns] = React.useState();
-    
+    const [errp, setErrP] = React.useState(false);
     useEffect(() => {
         console.log("aprete noma")
         let token = {token : context.userid};
@@ -69,22 +70,24 @@ export default function MiCuenta() {
         if (paq.password != paq.passwordn) {
            console.log("cambio de clave")
             setOpen(true);
-
+            
         }
-        
+        console.log("sigue el baile y el codigo??")
+        if (!errp) {
         axios.post("http://localhost:8002/modif", token)
                     
             
-        .then((response)=>{
-            console.log(response.data,"response1");
+          .then((response)=>{
+              console.log(response.data,"response1");
+              
+              
+          })
+          .catch((error)=>{
+              console.log("error-",error,"-error");
             
-            
-        })
-        .catch((error)=>{
-            console.log("error-",error,"-error");
-           
-        })
-    } 
+          })
+        } 
+      }
 
 
     const handleChangeN = (name, newName) => {
@@ -130,12 +133,25 @@ export default function MiCuenta() {
     const handleChangeRevPass = (passc,newPassc) => {
          
         setPassc(newPassc);
-        if (passc.target.value != passns){
-          console.log(passns,"passwd de antes", passc.target.value ,"pass de ahora")
-        setOpenE(true);
-        console.log("no coinciden capo");
-  
-        }
+        setPassc(passc.target.value);
+       
+    }
+
+    const handleClickAceptNpass = () => {
+      console.log("apreta el boton");
+      handleClose();
+      console.log(passns,"passwd de antes", passc ,"pass de ahora")
+      if (passc != passns){
+       
+      setOpenE(true);
+      console.log("no coinciden capo");
+      setErrP(true);
+      
+      }
+     else { console.log ("si coinciden")
+     setOpenE(false);
+    
+    } 
     }
 
 
@@ -252,11 +268,15 @@ export default function MiCuenta() {
             />
         
         </Box>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={handleClickAceptNpass} onClose={handleClose} color="primary" autoFocus>
             Agree
           </Button>
         </DialogActions>
       </Dialog>  
+      <Collapse in={openE}> 
+      <Alert severity="error">Las contraseñas no coinciden!</Alert>
+      </Collapse> 
+    
 
     
     </div>
