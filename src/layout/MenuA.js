@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, IconButton, Toolbar,MenuItem,Menu } from "@mui/material";
+import { AppBar, Box, Button, IconButton, Toolbar,MenuItem,Menu, Collapse } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import * as React from 'react';
 
 import  {useContext} from 'react'
 import UserInfoContext from '../context/UserInfoContext'
+import { SettingsBluetoothTwoTone } from "@mui/icons-material";
 
 
 
@@ -22,7 +23,8 @@ function MenuA() {
     
     let navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [anchorEl2, setAnchorEl2] = React.useState(null);   
+    const [anchorEl2, setAnchorEl2] = React.useState(null);  
+    const [openE, setOpenE] = React.useState(false);  
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
         console.log(anchorEl,"anchor de espadar 1",event.currentTarget);
@@ -51,42 +53,9 @@ function MenuA() {
 
     function Botonlogin () {
         if (context.userid) {
-
-        
-            return (
-                <Box sx={{ ml: 2, display: "flex", justifyContent: "start" }}>
-                <Button
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu2"
-                sx={{ mr: 2 }}
-                aria-controls="simple-menu2" 
-                aria-haspopup="true" 
-                onClick={handleClick1}
-            >
-            {context.username}
-            </Button>
-                
-                <Menu
-                id="simple-menu2"
-                anchorEl={anchorEl2}
-                keepMounted
-                open={anchorEl2}
-                onClose={handleClose}
-                >
-                <MenuItem onClick={()=>{setAnchorEl(null);navigate("/micuenta")}}>Mi cuenta</MenuItem>
-
-                <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
-                <MenuItem onClick={handleClose}>Preguntas</MenuItem>
-                <MenuItem onClick={handleClose}>Reservas</MenuItem>
-                <MenuItem onClick={handleClose}>Pagos</MenuItem>
-                <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
-                </Menu>
-            </Box>
-            
-            )
-            }    
+          
+            setOpenE(true);
+           }    
     
     
         return  ( <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>)
@@ -150,6 +119,38 @@ function MenuA() {
                     </Box>
                     <Box sx={{ justifySelf: "end" }}>
                       <Botonlogin />  
+                      <Collapse in={openE}> 
+                            <Box sx={{ ml: 2, display: "flex", justifyContent: "start" }}>
+                            <Button
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu2"
+                            sx={{ mr: 2 }}
+                            aria-controls="simple-menu2" 
+                            aria-haspopup="true" 
+                            onClick={handleClick1}
+                        >
+                        {context.username}
+                        </Button>
+                            
+                            <Menu
+                            id="simple-menu2"
+                            anchorEl={anchorEl2}
+                            keepMounted
+                            open={anchorEl2}
+                            onClose={handleClose}
+                            >
+                            <MenuItem onClick={()=>{setAnchorEl(null);navigate("/micuenta")}}>Mi cuenta</MenuItem>
+
+                            <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
+                            <MenuItem onClick={handleClose}>Preguntas</MenuItem>
+                            <MenuItem onClick={handleClose}>Reservas</MenuItem>
+                            <MenuItem onClick={handleClose}>Pagos</MenuItem>
+                            <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
+                            </Menu>
+                        </Box>
+                      </Collapse>
                         
                     </Box>
                     
