@@ -25,6 +25,7 @@ function MenuA() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorEl2, setAnchorEl2] = React.useState(null);  
     const [openE, setOpenE] = React.useState(false);  
+    const [openB, setOpenB] = React.useState(true);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
         console.log(anchorEl,"anchor de espadar 1",event.currentTarget);
@@ -55,11 +56,10 @@ function MenuA() {
         if (context.userid) {
           
             setOpenE(true);
+            setOpenB(false);
            }    
     
-    
-        return  ( <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>)
-    
+  return ("")
     }
          
 
@@ -119,6 +119,11 @@ function MenuA() {
                     </Box>
                     <Box sx={{ justifySelf: "end" }}>
                       <Botonlogin />  
+                      <Collapse in={openB}>
+                           
+                            <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>
+
+                      </Collapse>
                       <Collapse in={openE}> 
                             <Box sx={{ ml: 2, display: "flex", justifyContent: "start" }}>
                             <Button
