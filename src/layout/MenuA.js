@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 
 
-import  {useContext} from 'react'
+
+import  {useContext, useEffect} from 'react'
 import UserInfoContext from '../context/UserInfoContext'
-import { SettingsBluetoothTwoTone } from "@mui/icons-material";
+import { Call, SettingsBluetoothTwoTone } from "@mui/icons-material";
 
 
 
@@ -52,14 +53,26 @@ function MenuA() {
         setAnchorEl2(null);
       };
 
-    function Botonlogin () {
+      useEffect(() => {
         if (context.userid) {
           
             setOpenE(true);
             setOpenB(false);
-           }    
+           }   
+        }  
+        );
+
+    const Botonlogin = () => {
     
-  return ("")
+         
+        navigate("/loginn")
+       }
+    const handleClickBotMicuenta = () => {
+        setAnchorEl(null);
+        navigate("/micuenta");
+        handleClose();
+        
+
     }
          
 
@@ -118,10 +131,10 @@ function MenuA() {
                         <Button color="inherit" onClick={()=>{navigate("/otrasCosas/11")}}>OtrasCosas</Button>
                     </Box>
                     <Box sx={{ justifySelf: "end" }}>
-                      <Botonlogin />  
+                      
                       <Collapse in={openB}>
                            
-                            <Button color="inherit" sx={{ ml: 1} } onClick={()=>{navigate("/loginn")}}>Login</Button>
+                            <Button color="inherit" sx={{ ml: 1} } onClick={Botonlogin}>Login</Button>
 
                       </Collapse>
                       <Collapse in={openE}> 
@@ -146,7 +159,7 @@ function MenuA() {
                             open={anchorEl2}
                             onClose={handleClose}
                             >
-                            <MenuItem onClick={()=>{setAnchorEl(null);navigate("/micuenta")}}>Mi cuenta</MenuItem>
+                            <MenuItem onClick={handleClickBotMicuenta}>Mi cuenta</MenuItem>
 
                             <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
                             <MenuItem onClick={handleClose}>Preguntas</MenuItem>
