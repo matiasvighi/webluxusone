@@ -67,6 +67,14 @@ function MenuA() {
          
         navigate("/loginn")
        }
+
+    const Botonlogout = () => {
+        context.setUsername(null);
+        context.setUsData(null);
+        setOpenB(true);
+        setOpenE(false);
+        handleClose();
+    }
     const handleClickBotMicuenta = () => {
         setAnchorEl(null);
         navigate("/micuenta");
@@ -161,11 +169,8 @@ function MenuA() {
                             >
                             <MenuItem onClick={handleClickBotMicuenta}>Mi cuenta</MenuItem>
 
-                            <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
-                            <MenuItem onClick={handleClose}>Preguntas</MenuItem>
-                            <MenuItem onClick={handleClose}>Reservas</MenuItem>
-                            <MenuItem onClick={handleClose}>Pagos</MenuItem>
-                            <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
+                            <MenuItem onClick={Botonlogout}>Cerrar Sesión</MenuItem>
+                           
                             </Menu>
                         </Box>
                       </Collapse>
