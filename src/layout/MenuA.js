@@ -29,8 +29,7 @@ function MenuA() {
     const [openB, setOpenB] = React.useState(true);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-        console.log(anchorEl,"anchor de espadar 1",event.currentTarget);
-        console.log("apreto menú");
+      
     
       };
 
@@ -40,9 +39,7 @@ function MenuA() {
       
       
     const handleClick1 = (event) => {
-        console.log(anchorEl2,"anchor de bastor 2",event.currentTarget);
         setAnchorEl2(event.currentTarget);
-        console.log("chavon logueado apreta boton");
         
         
     }//aca va lo del boton del tipo logeado     
@@ -118,7 +115,7 @@ function MenuA() {
                                 >
                                     <MenuItem onClick={handleClose}>Mis Fotos</MenuItem>
                                     <MenuItem onClick={handleClose}>Preguntas</MenuItem>
-                                    <MenuItem onClick={handleClose}>Reservas</MenuItem>
+                                    <MenuItem onClick={()=>{navigate("/scheduller/10")}}>Reservas</MenuItem>
                                     <MenuItem onClick={handleClose}>Pagos</MenuItem>
                                     <MenuItem onClick={handleClose}>Reuniones/Minuta</MenuItem>
                                 </Menu>

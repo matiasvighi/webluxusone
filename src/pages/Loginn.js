@@ -1,4 +1,5 @@
-import { Menu } from "@mui/material";
+import {  Typography } from "@mui/material";
+import { makeStyles, Menu } from '@mui/styles';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -15,6 +16,12 @@ import UserInfoContext from '../context/UserInfoContext'
 
 import Context from "../context/UserInfoContext";
 
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    maxWidth: 500,
+  },
+});
 
 
 
@@ -33,12 +40,14 @@ const [rta, setRta] = React.useState("Cargando...");
 const [token,setToken] = React.useState();
 const [usbut,setUsbut] = React.useState();
 
+const classes = useStyles();
+
 const handleChange = (value, newValue) => {
     setValue(newValue) ;
-    console.log(value.target.value);
+   // console.log(value.target.value);
     let newUser = {...userr, email : value.target.value}
     setUserr(newUser);
-    console.log(userr.email,"username")
+ //   console.log(userr.email,"username")
 }
     const handlePass = (pass, newPass) => {
     setPass(newPass) ;
@@ -50,27 +59,26 @@ const handleChange = (value, newValue) => {
         context.setUsData("Garompa 3")
         context.showMessage();
          setSubbut(newSubbut) ;
-     console.log("estoy tratando de submitear Email:",userr.email,"pasword:",userr.password);
-     console.log(context.userid,"chota de mono");
+  //   console.log("estoy tratando de submitear Email:",userr.email,"pasword:",userr.password);
      axios.post("http://localhost:8002/login",userr)
 
 
 
         .then((response)=>{
-            console.log(response.data.token);
+           
             setRta(response.data);
             setToken(response.data.token);
-            console.log (response.data, "complete response")
+          //  console.log (response.data, "complete response")
             let resp = response.data.token;
             let usrname= response.data.first_name;
-            console.log("nombre del vago1",usrname,"....");
+           
+
             //let url = `/${resp}`;
             //console.log(url,"url que voy a consultar");
             //navigate(url);
                     
             context.setUsData(resp);
             context.setUsername(usrname);
-            console.log("token actual2",context.userid,"nombre del vago que está conectado",context.username);
             navigate("/") ;  
         })
         .catch((error)=>{
@@ -83,7 +91,6 @@ const handleChange = (value, newValue) => {
     }
     const handleClickNewUser = (usbut,newUsbut) => {
         setUsbut(newUsbut) ;
-        console.log ("boton new user");
         navigate("/newUser");
         
         //<Button color="inherit" onClick={()=>{navigate("/newUser")}}>OtrasCosas</Button>
@@ -103,9 +110,25 @@ const handleChange = (value, newValue) => {
       autoComplete="off"
     >
       <div>
-       <Box>Login {context.userid} </Box>
+       <Box>
+      
+     
+         
+         {context.userid}
+       </Box>
+      
+      
+          <Typography variant="h3" gutterBottom sx={{m:25, }}>
+            Login
+          </Typography>
+
+      
+      
+
+      
 
       <Container maxWidth="sm" sx={{m:25, border:1}}>
+      
           <Box>
         <TextField
           required

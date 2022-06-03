@@ -32,11 +32,10 @@ export default function MiCuenta() {
     const [passns, setPassns] = React.useState();
     const [errp, setErrP] = React.useState(false);
     useEffect(() => {
-        console.log("aprete noma")
         let token = {token : context.userid};
     
     
-        console.log("token actual",token);
+       // console.log("token actual",token);
 
 
             
@@ -44,7 +43,7 @@ export default function MiCuenta() {
                     
             
             .then((response)=>{
-                console.log(response.data,"response1");
+               // console.log(response.data,"response1");
                 
                 setPaq(response.data);
                 
@@ -68,11 +67,10 @@ export default function MiCuenta() {
         let token = {token : context.userid , userdata : paq };
         
         if (paq.password != paq.passwordn) {
-           console.log("cambio de clave")
+          // console.log("cambio de clave")
             setOpen(true);
             
         }
-        console.log("sigue el baile y el codigo??")
         if (!errp) {
         axios.post("http://localhost:8002/modif", token)
                     
@@ -110,14 +108,14 @@ export default function MiCuenta() {
         setEmail(newEmail) ;
         let newPaq = {...paq, email : email.target.value}
         setPaq(newPaq);    
-        console.log(paq.email,"email");
+     //   console.log(paq.email,"email");
     }
     
     const handleChangeP = (pass, newPass) => {
         setPass(newPass) ;
         let newPaq = {...paq, password : pass.target.value}
         setPaq(newPaq);    
-        console.log(paq.password,"password");  
+      //  console.log(paq.password,"password");  
     }
 
     
@@ -127,7 +125,7 @@ export default function MiCuenta() {
         let newPaq = {...paq, passwordn : passn.target.value}
         setPaq(newPaq);  
         setPassns(passn.target.value)  
-        console.log(paq.passwordn,"passwordn");  
+       // console.log(paq.passwordn,"passwordn");  
     }
 
     const handleChangeRevPass = (passc,newPassc) => {
@@ -138,17 +136,17 @@ export default function MiCuenta() {
     }
 
     const handleClickAceptNpass = () => {
-      console.log("apreta el boton");
       handleClose();
-      console.log(passns,"passwd de antes", passc ,"pass de ahora")
+      //console.log(passns,"passwd de antes", passc ,"pass de ahora")
       if (passc != passns){
        
       setOpenE(true);
-      console.log("no coinciden capo");
+     // console.log("no coinciden capo");
       setErrP(true);
       
       }
-     else { console.log ("si coinciden")
+     else { 
+       //console.log ("si coinciden");
      setOpenE(false);
     
     } 

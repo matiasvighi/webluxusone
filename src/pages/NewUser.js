@@ -28,17 +28,17 @@ const [token,setToken] = React.useState();
 
 const handleChangeN = (name, newName) => {
     setName(newName) ;
-    console.log(name.target.value);
+    //console.log(name.target.value);
     let newPaq = {...paq, first_name : name.target.value};
     setPaq(newPaq);
-    console.log(paq.first_name,"username")
+    //console.log(paq.first_name,"username")
 }
 const handleChangeA = (last_name, newLastName) => {
     setLastName(newLastName) ;
     let newPaq = {...paq, last_name : last_name.target.value};
 
     setPaq(newPaq);    
-    console.log(paq.last_name,"user lastname");
+    //console.log(paq.last_name,"user lastname");
 
 
 }
@@ -46,31 +46,30 @@ const handleChangeE = (email, newEmail) => {
     setEmail(newEmail) ;
     let newPaq = {...paq, email : email.target.value}
     setPaq(newPaq);    
-    console.log(paq.email,"email");
+    //console.log(paq.email,"email");
 }
 
 const handleChangeP = (pass, newPass) => {
     setPass(newPass) ;
     let newPaq = {...paq, password : pass.target.value}
     setPaq(newPaq);    
-    console.log(paq.password,"password");  
+   // console.log(paq.password,"password");  
 }
 
 const handleClickLogin = (subbut, newSubbut) => {
     setSubbut(newSubbut) ;
-    console.log("estoy enviando ",paq.email,"pasword:",paq.password,"completo",paq);
+   // console.log("estoy enviando ",paq.email,"pasword:",paq.password,"completo",paq);
 
     axios.post("http://localhost:8002/register",paq)
 
-//el response no está funcionando la puta que te parió tu vieja en tanga!
+
 
         .then((response)=>{
-            console.log(response.data.token);
+       //     console.log(response.data.token);
             setRta(response.data);
             setToken(response.data.token);
             let pijas = response.data.token
             let chotas = `/${pijas}`  
-            console.log(chotas,token,"chotas",rta)
             navigate(chotas);
         })
         .catch((error)=>{

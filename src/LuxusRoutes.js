@@ -12,6 +12,7 @@ import MisFotos from "./pages/MisFotos";
 import Pagos from "./pages/Pagos";
 import Reservas from "./pages/Reservas";
 import ReunionesMinuta from "./pages/ReunionesMinuta";
+import Scheduller from "./pages/Scheduller";
 
 
 function LuxusRoutes(){
@@ -30,6 +31,7 @@ function LuxusRoutes(){
             <Route path="/pagos/"element={<Pagos />}></Route>
             <Route path="/reservas/"element={<Reservas />}></Route>
             <Route path="/reunionesminutas/"element={<ReunionesMinuta />}></Route>
+            <Route path="/Scheduller/:eventId"element={<Scheduller />}></Route>
         </Routes>
     )
 }

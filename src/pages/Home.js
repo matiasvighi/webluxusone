@@ -9,7 +9,7 @@ import UserInfoContext from '../context/UserInfoContext'
 
 
 function Home(){
-    console.log("home")
+
     const context = useContext(UserInfoContext);
 
 
@@ -21,7 +21,7 @@ function Home(){
     let token = {token : context.userid};
    
    
-    console.log("token actual",token);
+    //console.log("token actual",token);
 
 
         
@@ -29,10 +29,9 @@ function Home(){
                 
         
         .then((response)=>{
-            console.log(response.data.name,"response1");
+         //   console.log(response.data.name,"response1");
             
             setSaludo(`Welcome,${response.data.name},have a nice day motherfucker`);
-            console.log("pito Duro",saludo,context.userid);
         })
         .catch((error)=>{
             console.log("error-",error,"-error");

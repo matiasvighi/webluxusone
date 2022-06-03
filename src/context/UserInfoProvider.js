@@ -7,7 +7,7 @@ export default function UserInfoProvider({children}) {
     const [username,setUsername] = useState(null);
     const [isadmin, setIsadmin] = useState(null);
     function showMessage(){
-        console.log("AAAAAAAAAAA!!!!!!!!")
+      //  console.log("AAAAAAAAAAA!!!!!!!!")
     }
     return (
         <UserInfoContext.Provider value={{
